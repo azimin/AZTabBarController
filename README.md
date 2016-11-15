@@ -25,7 +25,7 @@ github "azimin/AZTabBarController"
 ```
 - or clone as a git submodule,
 
-- or just copy `AZTabBarController/AZTabBarController.swift` and `AZTabBarController/UIView+Extensions.swift` into your project.
+- or just copy `Source/AZTabBarController.swift` and `Source/UIView+Extensions.swift` into your project.
 
 ## AZTabBarController setup in storyboard
 
