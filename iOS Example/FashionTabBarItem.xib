@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2U8-cE-e4e" customClass="FashionTabBarItem" customModule="iOS_Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="125" height="118"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4E-fO-4xT">
+                    <rect key="frame" x="29" y="11" width="68" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_fave" translatesAutoresizingMaskIntoConstraints="NO" id="F4Y-e2-IKx">
+                    <rect key="frame" x="44" y="40" width="38" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="38" id="ZDK-Gm-4fG"/>
+                        <constraint firstAttribute="height" constant="38" id="fEJ-cx-S8p"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fave" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYZ-OB-cO6">
+                    <rect key="frame" x="45" y="86" width="36" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.45882352939999999" green="0.77647058820000003" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="F4Y-e2-IKx" firstAttribute="top" secondItem="h4E-fO-4xT" secondAttribute="bottom" constant="8" id="9t8-92-ED7"/>
+                <constraint firstItem="pYZ-OB-cO6" firstAttribute="top" secondItem="F4Y-e2-IKx" secondAttribute="bottom" constant="8" id="PWh-f8-Lrj"/>
+                <constraint firstItem="F4Y-e2-IKx" firstAttribute="centerX" secondItem="2U8-cE-e4e" secondAttribute="centerX" id="QGn-hZ-Gex"/>
+                <constraint firstItem="pYZ-OB-cO6" firstAttribute="centerX" secondItem="2U8-cE-e4e" secondAttribute="centerX" id="byk-dp-MAQ"/>
+                <constraint firstItem="F4Y-e2-IKx" firstAttribute="centerY" secondItem="2U8-cE-e4e" secondAttribute="centerY" id="sVm-jL-pNi"/>
+                <constraint firstItem="h4E-fO-4xT" firstAttribute="centerX" secondItem="2U8-cE-e4e" secondAttribute="centerX" id="vK6-O0-d2K"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bottomLabel" destination="pYZ-OB-cO6" id="qIZ-Z6-ZDI"/>
+                <outlet property="imageView" destination="F4Y-e2-IKx" id="XdQ-Mz-dOy"/>
+                <outlet property="topLabel" destination="h4E-fO-4xT" id="d3I-Eh-uSG"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="-1"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_fave" width="77" height="77"/>
+    </resources>
+</document>
