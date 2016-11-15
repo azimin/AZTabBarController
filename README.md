@@ -78,3 +78,11 @@ override func az_tabBarItemContentView() -> AZTabBarItemView {
 }
 ```
 But pay attention that `Bottom Layout Guide` would use old value.
+
+## To-do
+
+- Support iOS 8+ (moved from anchors to cosntraints)
+- Support creation from code (right now only storyboard)
+- Support `AZTabBarItemView` without xib
+- Add some template `AZTabBarItemView` subsclasses
+- Improve example
