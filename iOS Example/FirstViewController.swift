@@ -13,10 +13,8 @@ class FirstViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    // Select third VC after viewDidLoad
-    tabBarController?.selectedIndex = 2
   }
+  
   // You have to override this method for custom tab bar items
   override func az_tabBarItemContentView() -> AZTabBarItemView {
     

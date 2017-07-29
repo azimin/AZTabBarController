@@ -144,8 +144,6 @@ public class AZTabBarController: UITabBarController {
 
   public override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-
-
   }
 
   // MARK: - Setup
@@ -154,7 +152,7 @@ public class AZTabBarController: UITabBarController {
     for (index, item) in az_items.enumerated() {
       let viewContainer = az_setupView(onItem: item, index: index)
 
-      if index == 0 {
+      if index == selectedIndexOrZero {
         item.setSelected(true, animated: false)
       } else {
         item.setSelected(false, animated: false)
@@ -177,6 +175,7 @@ public class AZTabBarController: UITabBarController {
     tabBar.alpha = 1
     tabBar.shadowImage = UIImage()
     tabBar.backgroundImage = UIImage()
+    selectedIndex = selectedIndexOrZero
   }
 
   private func az_setupView(onItem item: AZTabBarItem, index: Int) -> AZTabBarItemView {
@@ -206,22 +205,31 @@ public class AZTabBarController: UITabBarController {
 
   @objc private func az_tapHandler(_ gesture: UIGestureRecognizer) {
     let currentIndex = (gesture.view as! AZTabBarItemView).index
-    az_setSelectedIndex(currentIndex)
+    az_setSelectedIndex(currentIndex, oldIndex: selectedIndex)
+  }
+
+  var selectedIndexOrZero: Int {
+    return selectedIndex < (viewControllers?.count ?? 0) ? selectedIndex : 0
   }
 
   public override var selectedIndex: Int {
     didSet {
-      az_setSelectedIndex(selectedIndex, posible: oldValue)
+      // If inicialize value is wrong, don't unselect anything
+      if oldValue < (viewControllers?.count ?? 0) {
+        az_setSelectedIndex(selectedIndex, oldIndex: oldValue)
+      }
     }
   }
 
-  private func az_setSelectedIndex(_ currentIndex: Int, posible oldIndex: Int? = nil) {
-    if oldIndex ?? selectedIndex != currentIndex {
+  private func az_setSelectedIndex(_ currentIndex: Int, oldIndex: Int?) {
+    if oldIndex != currentIndex {
       let selectedItem: AZTabBarItem = az_items[currentIndex]
       selectedItem.setSelected(true, animated: true)
 
-      let deselectedItem = az_items[oldIndex ?? selectedIndex]
-      deselectedItem.setSelected(false, animated: true)
+      if let oldIndex = oldIndex {
+        let deselectedItem = az_items[oldIndex]
+        deselectedItem.setSelected(false, animated: true)
+      }
 
       selectedIndex = currentIndex
     }
