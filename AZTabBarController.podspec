@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AZTabBarController"
-  s.version      = "0.1"
+  s.version      = "1.0"
   s.summary      = "Framework that helps you to work with custom tab bar controller."
   s.description  = <<-DESC
                     With this framework can easily work with custom views of default tab bar controller.
@@ -15,5 +15,4 @@ Pod::Spec.new do |s|
     :tag => s.version
   }
   s.source_files  = 'Source/*.swift'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3' }
 end
