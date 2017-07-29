@@ -14,7 +14,7 @@ internal extension UIView {
   }
   
   class func az_viewFromNib(withOwner owner: Any?) -> Self {
-    let name = NSStringFromClass(self as! AnyClass).components(separatedBy: ".").last!
+    let name = NSStringFromClass(self as AnyClass).components(separatedBy: ".").last!
     let view = UINib(nibName: name, bundle: nil).instantiate(withOwner: owner, options: nil).first!
    // assert((view is self), nil)
     return cast(view)!
