@@ -14,6 +14,8 @@ class MiddleTabBarItem: AZTabBarItemView {
   @IBOutlet weak var textLabel: UILabel!
   
   override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    
     textLabel.textColor = selected ? UIColor.black : UIColor.black.withAlphaComponent(0.6)
     backgroundColor = selected ? UIColor.green : UIColor.lightGray
   }

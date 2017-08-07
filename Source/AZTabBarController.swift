@@ -10,7 +10,11 @@ import Foundation
 
 private let defaultHeight: CGFloat = 49
 
-open class AZTabBarItemView: UIView {
+public protocol AZTabBarItemViewAccessibility {
+  var accessibilityTitle: String { get }
+}
+
+open class AZTabBarItemView: UIView, AZTabBarItemViewAccessibility {
   public var heightValue: CGFloat?
   var preferedHeight: CGFloat {
     return heightValue ?? _preferedHeight
@@ -26,6 +30,10 @@ open class AZTabBarItemView: UIView {
     return _isSelected
   }
 
+  open override func layoutSubviews() {
+    super.layoutSubviews()
+  }
+
   /// DON"T CALL IT MANUALLY, JUST FOR OVERRIDING
   open func setSelected(_ selected: Bool, animated: Bool) {
     _isSelected = selected
@@ -33,6 +41,51 @@ open class AZTabBarItemView: UIView {
 
   public static func loadViewFromNib() -> Self {
     return self.init().az_loadFromNibIfEmbeddedInDifferentNib()
+  }
+
+  open var accessibilityTitle: String {
+    var title = ""
+    for view in subviews {
+      if let label = view as? UILabel,
+        let text = label.text {
+        title += "\(text)\n"
+      }
+    }
+    return title
+  }
+
+  // MARK: - Accessibility
+
+  open override var accessibilityLabel: String? {
+    get {
+      if let value = super.accessibilityLabel,
+        value.characters.count > 0 {
+        return value
+      }
+      return accessibilityTitle
+    }
+    set {
+      super.accessibilityLabel = accessibilityLabel
+    }
+  }
+
+  open override var isAccessibilityElement: Bool {
+    get {
+      return true
+    }
+    set {
+      super.isAccessibilityElement = newValue
+    }
+  }
+
+  open override var accessibilityTraits: UIAccessibilityTraits {
+    set {
+      super.accessibilityTraits = accessibilityTraits
+    }
+    get {
+      let value = super.accessibilityTraits
+      return value | UIAccessibilityTraitButton | (UIAccessibilityTraitSelected * (isSelected ? 1 : 0))
+    }
   }
 }
 
@@ -148,9 +201,20 @@ public class AZTabBarController: UITabBarController {
 
   // MARK: - Setup
 
+  private var az_itemViewConstraints: [NSLayoutConstraint] = []
+  private var az_itemViews: [UIView] = []
+
   private func az_createViewContainers() {
+
+    NSLayoutConstraint.deactivate(az_itemViewConstraints)
+    az_itemViewConstraints = []
+
+    az_itemViews.forEach({ $0.removeFromSuperview() })
+    az_itemViews = []
+    
     for (index, item) in az_items.enumerated() {
       let viewContainer = az_setupView(onItem: item, index: index)
+      az_itemViews.append(viewContainer)
 
       if index == selectedIndexOrZero {
         item.setSelected(true, animated: false)
@@ -159,18 +223,20 @@ public class AZTabBarController: UITabBarController {
       }
 
       tabBar.addSubview(viewContainer)
-      tabBar.bottomAnchor.constraint(equalTo: viewContainer.bottomAnchor).isActive = true
+      az_itemViewConstraints.append(tabBar.bottomAnchor.constraint(equalTo: viewContainer.bottomAnchor))
 
       if index > 0 {
-        az_items[index - 1].containerView.rightAnchor.constraint(equalTo: viewContainer.leftAnchor).isActive = true
-        az_items[index - 1].containerView.widthAnchor.constraint(equalTo: viewContainer.widthAnchor).isActive = true
+        az_itemViewConstraints.append(az_items[index - 1].containerView.rightAnchor.constraint(equalTo: viewContainer.leftAnchor))
+        az_itemViewConstraints.append(az_items[index - 1].containerView.widthAnchor.constraint(equalTo: viewContainer.widthAnchor))
       }
     }
 
     if let firstItem = az_items.first, let lastItem = az_items.last {
-      tabBar.leftAnchor.constraint(equalTo: firstItem.containerView.leftAnchor).isActive = true
-      tabBar.rightAnchor.constraint(equalTo: lastItem.containerView.rightAnchor).isActive = true
+      az_itemViewConstraints.append(tabBar.leftAnchor.constraint(equalTo: firstItem.containerView.leftAnchor))
+      az_itemViewConstraints.append(tabBar.rightAnchor.constraint(equalTo: lastItem.containerView.rightAnchor))
     }
+
+    NSLayoutConstraint.activate(az_itemViewConstraints)
 
     tabBar.alpha = 1
     tabBar.shadowImage = UIImage()
