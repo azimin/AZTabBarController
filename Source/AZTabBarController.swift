@@ -267,7 +267,8 @@ public class AZTabBarController: UITabBarController {
   }
 
   var selectedIndexOrZero: Int {
-    return selectedIndex < (viewControllers?.count ?? 0) ? selectedIndex : 0
+    let numberOfElements = viewControllers?.count ?? 0
+    return selectedIndex < numberOfElements ? selectedIndex : 0
   }
 
   public override var selectedIndex: Int {
