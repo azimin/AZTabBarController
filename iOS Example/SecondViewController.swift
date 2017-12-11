@@ -13,13 +13,13 @@ class SecondViewController: UIViewController {
   
   // You have to override this method for custom tab bar items
   override func az_tabBarItemContentView() -> AZTabBarItemView {
-    
+
     // Now supports only class + xib pairs
     let tab = MiddleTabBarItem.loadViewFromNib()
-    
+
     // You can setup specific height for elements
     tab.heightValue = 50
-    
+
     return tab
   }
 

@@ -11,15 +11,15 @@ import CoreGraphics
 import AZTabBarController
 
 class FashionTabBarItem: AZTabBarItemView {
-  
+
   @IBOutlet weak var topLabel: UILabel!
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var bottomLabel: UILabel!
-  
+
   override func setSelected(_ selected: Bool, animated: Bool) {
     topLabel.text = selected ? "Selected" : "Unselected"
     backgroundColor = selected ? UIColor.green : UIColor.lightGray
-    
+
     if selected && animated {
       imageView.shake(coefficient: 1, duration: 0.35)
     }
