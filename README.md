@@ -63,12 +63,12 @@ override func az_tabBarItemContentView() -> AZTabBarItemView {
 
 - You can setup default height on storybaord as @IBInspectable `AZTabBarController` property
 - If you want to change height of tab bar, you can call (on any chird view controllers):
-```
+```swift
 self.az_tabBarController?.preferedHeight = 125
 ```
 This would change `Bottom Layout Guide`
 - If you want to change height of specific items, you should use `heightValue` of your `AZTabBarItemView`, so it would be:
-```
+```swift
 override func az_tabBarItemContentView() -> AZTabBarItemView {
   let tab = MiddleTabBarItem.loadViewFromNib()
     
