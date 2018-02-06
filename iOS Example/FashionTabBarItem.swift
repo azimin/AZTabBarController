@@ -17,12 +17,18 @@ class FashionTabBarItem: AZTabBarItemView {
   @IBOutlet weak var bottomLabel: UILabel!
 
   override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+
     topLabel.text = selected ? "Selected" : "Unselected"
     backgroundColor = selected ? UIColor.green : UIColor.lightGray
 
     if selected && animated {
       imageView.shake(coefficient: 1, duration: 0.35)
     }
+  }
+
+  override var accessibilityTitle: String {
+    return bottomLabel.text ?? super.accessibilityTitle
   }
 }
 

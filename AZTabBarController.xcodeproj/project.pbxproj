@@ -21,6 +21,8 @@
 		92BEF46D1DDB72780054FD17 /* AZTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 92BEF4691DDB72780054FD17 /* AZTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		92BEF46E1DDB72780054FD17 /* AZTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BEF46A1DDB72780054FD17 /* AZTabBarController.swift */; };
 		92BEF4701DDB72780054FD17 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BEF46C1DDB72780054FD17 /* UIView+Extensions.swift */; };
+		9F4F7D3A1F38F6C400492E83 /* AZTabBarController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C850F41DDA88B900F3C9E3 /* AZTabBarController.framework */; };
+		9F4F7D3B1F38F6C400492E83 /* AZTabBarController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 92C850F41DDA88B900F3C9E3 /* AZTabBarController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,20 @@
 			remoteInfo = AZTabBarController;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9F4F7D3C1F38F6C500492E83 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9F4F7D3B1F38F6C400492E83 /* AZTabBarController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		92A66CBB1DDA8E0B00F792AB /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4F7D3A1F38F6C400492E83 /* AZTabBarController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +166,7 @@
 				92A66CB71DDA8E0B00F792AB /* Sources */,
 				92A66CB81DDA8E0B00F792AB /* Frameworks */,
 				92A66CB91DDA8E0B00F792AB /* Resources */,
+				9F4F7D3C1F38F6C500492E83 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -299,6 +317,7 @@
 		92A66CCD1DDA8E0B00F792AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5MGEMLZRS4;
 				INFOPLIST_FILE = "iOS Example/Info.plist";
@@ -314,6 +333,7 @@
 		92A66CCE1DDA8E0B00F792AB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5MGEMLZRS4;
 				INFOPLIST_FILE = "iOS Example/Info.plist";
